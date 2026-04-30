@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>K. Leela Prasanthi — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0d0d0f;
+      --bg2: #13131a;
+      --surface: #1c1c26;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8e4dd;
+      --muted: #7a7880;
+      --accent: #7c6fff;
+      --accent2: #ff6b9d;
+      --accent3: #00d4aa;
+      --grad: linear-gradient(135deg, #7c6fff, #ff6b9d);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 6%;
+      background: rgba(13,13,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; color: var(--text); text-decoration: none;
+    }
+    .nav-logo span { background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 6% 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; pointer-events: none;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute; top: -200px; right: -100px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,111,255,0.12) 0%, transparent 65%);
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute; bottom: -200px; left: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,157,0.08) 0%, transparent 65%);
+    }
+    .grid-lines {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 750px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); border: 1px solid rgba(124,111,255,0.3);
+      border-radius: 2rem; padding: 0.4rem 1rem; margin-bottom: 2rem;
+    }
+    .hero-badge::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      line-height: 1.0; margin-bottom: 1.5rem; font-weight: 600;
+    }
+    .hero h1 .name-k { color: var(--muted); font-size: 0.55em; display: block; margin-bottom: 0.2rem; letter-spacing: 0.15em; font-weight: 400; }
+    .hero h1 .name-main { display: block; }
+    .hero h1 em {
+      font-style: italic;
+      background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-roles {
+      display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.5rem;
+    }
+    .role-pill {
+      font-size: 0.78rem; padding: 0.35rem 0.9rem;
+      border-radius: 2rem; letter-spacing: 0.04em;
+    }
+    .role-pill.da { background: rgba(0,212,170,0.12); color: var(--accent3); border: 1px solid rgba(0,212,170,0.2); }
+    .role-pill.fe { background: rgba(124,111,255,0.12); color: var(--accent); border: 1px solid rgba(124,111,255,0.2); }
+    .hero-desc { font-size: 1rem; color: var(--muted); max-width: 480px; margin-bottom: 2.5rem; line-height: 1.8; }
+    .hero-desc strong { color: var(--text); font-weight: 500; }
+    .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--grad); color: #fff;
+      padding: 0.85rem 2rem; border-radius: 2rem;
+      text-decoration: none; font-size: 0.88rem; font-weight: 500;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid var(--border); color: var(--text);
+      padding: 0.85rem 2rem; border-radius: 2rem;
+      text-decoration: none; font-size: 0.88rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* ── ABOUT ── */
+    .about {
+      padding: 7rem 6%;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+    }
+    .section-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1.15; margin-bottom: 3rem;
+    }
+    .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 5rem; align-items: start; }
+    .about-intro { font-size: 1.05rem; color: rgba(232,228,221,0.75); line-height: 1.9; }
+    .about-intro p + p { margin-top: 1.2rem; }
+    .about-intro strong { color: var(--text); font-weight: 500; }
+    .about-sidebar { display: flex; flex-direction: column; gap: 1.5rem; }
+    .info-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem; padding: 1.25rem 1.5rem;
+    }
+    .info-label { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.4rem; }
+    .info-value { font-size: 0.92rem; color: var(--text); }
+    .hobbies { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem; }
+    .hobby-tag {
+      font-size: 0.78rem; padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      background: rgba(124,111,255,0.08);
+      border: 1px solid rgba(124,111,255,0.18);
+      color: var(--accent);
+    }
+
+    /* ── SKILLS ── */
+    .skills { padding: 7rem 6%; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+    .skill-category {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 1.2rem; padding: 1.75rem;
+    }
+    .skill-cat-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .skill-cat-name { font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-chip {
+      font-size: 0.82rem; padding: 0.3rem 0.85rem;
+      border-radius: 0.5rem;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+    .skill-chip.lang { border-color: rgba(0,212,170,0.25); color: var(--accent3); background: rgba(0,212,170,0.07); }
+    .skill-chip.web { border-color: rgba(124,111,255,0.25); color: var(--accent); background: rgba(124,111,255,0.07); }
+    .skill-chip.soft { border-color: rgba(255,107,157,0.25); color: var(--accent2); background: rgba(255,107,157,0.07); }
+
+    /* ── PROJECTS ── */
+    .projects { padding: 7rem 6%; background: var(--bg2); border-top: 1px solid var(--border); }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 1.2rem; padding: 2rem;
+      transition: border-color 0.25s, transform 0.25s;
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+    }
+    .project-card:hover { border-color: rgba(124,111,255,0.35); transform: translateY(-5px); }
+    .project-card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.25rem; }
+    .project-icon-wrap {
+      width: 44px; height: 44px; border-radius: 0.75rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+    }
+    .project-link-icon { color: var(--muted); font-size: 0.9rem; transition: color 0.2s; }
+    .project-card:hover .project-link-icon { color: var(--accent); }
+    .project-card h3 { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
+    .project-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.75; flex: 1; }
+    .project-footer { margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+    .lang-badge {
+      font-size: 0.72rem; padding: 0.2rem 0.65rem; border-radius: 0.4rem;
+      background: rgba(255,255,255,0.06); border: 1px solid var(--border);
+      color: var(--muted); letter-spacing: 0.05em;
+    }
+    .gh-link { font-size: 0.75rem; color: var(--muted); text-decoration: none; display: flex; align-items: center; gap: 0.3rem; transition: color 0.2s; }
+    .gh-link:hover { color: var(--accent); }
+
+    /* ── CONTACT ── */
+    .contact {
+      padding: 7rem 6%; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .contact::before {
+      content: '';
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(124,111,255,0.06) 0%, transparent 70%);
+    }
+    .contact .section-title { max-width: 550px; margin: 0 auto 3rem; }
+    .contact-card {
+      display: inline-flex; flex-direction: column; align-items: center; gap: 1.75rem;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 1.5rem; padding: 3rem 4rem;
+      position: relative; z-index: 1;
+    }
+    .contact-email {
+      font-size: 1.3rem; color: var(--text); text-decoration: none;
+      display: flex; align-items: center; gap: 0.75rem;
+      transition: color 0.2s;
+    }
+    .contact-email:hover { color: var(--accent); }
+    .contact-divider { width: 100%; height: 1px; background: var(--border); }
+    .social-row { display: flex; gap: 1.5rem; }
+    .social-btn {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; padding: 0.5rem 1.2rem;
+      border: 1px solid var(--border); border-radius: 2rem;
+      transition: all 0.2s;
+    }
+    .social-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2rem;
+      font-size: 0.78rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-badge { animation: fadeUp 0.5s ease both; }
+    .hero h1 { animation: fadeUp 0.5s 0.1s ease both; }
+    .hero-roles { animation: fadeUp 0.5s 0.2s ease both; }
+    .hero-desc { animation: fadeUp 0.5s 0.3s ease both; }
+    .cta-group { animation: fadeUp 0.5s 0.4s ease both; }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .contact-card { padding: 2rem; }
+      .social-row { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">K.<span>LP</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="grid-lines"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-badge">Open to opportunities</div>
+    <h1>
+      <span class="name-k">K.</span>
+      <span class="name-main">Leela<br><em>Prasanthi</em></span>
+    </h1>
+    <div class="hero-roles">
+      <span class="role-pill da">Data Analyst</span>
+      <span class="role-pill fe">Frontend Developer</span>
+    </div>
+    <p class="hero-desc">
+      Student at <strong>Kallam Harnadhreddy Institute of Technology</strong>, building real-world skills in data analysis and web development — one project at a time.
+    </p>
+    <div class="cta-group">
+      <a href="#projects" class="btn-primary">View Projects →</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <p class="section-eyebrow">Who I am</p>
+  <h2 class="section-title">Curious mind,<br>data & code obsessed.</h2>
+  <div class="about-grid">
+    <div class="about-intro">
+      <p>
+        Hi! I'm <strong>K. Leela Prasanthi</strong>, a passionate student at Kallam Harnadhreddy Institute of Technology. I love finding patterns in data and building beautiful interfaces that bring those insights to life.
+      </p>
+      <p>
+        My journey spans both worlds — as a <strong>Data Analyst</strong>, I explore datasets with Python, and as a <strong>Frontend Developer</strong>, I craft responsive, user-friendly web experiences with HTML, CSS, and JavaScript.
+      </p>
+      <p>
+        When I'm not coding or crunching data, you'll find me lost in a good book, listening to music, or exploring new inventories. I believe every skill you pick up makes you a better problem-solver.
+      </p>
+    </div>
+    <div class="about-sidebar">
+      <div class="info-block">
+        <div class="info-label">Institution</div>
+        <div class="info-value">Kallam Harnadhreddy Institute of Technology</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Roles</div>
+        <div class="info-value">Data Analyst · Frontend Developer</div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">Hobbies</div>
+        <div class="hobbies">
+          <span class="hobby-tag">📚 Reading Books</span>
+          <span class="hobby-tag">🎵 Music</span>
+          <span class="hobby-tag">📦 Inventories</span>
+        </div>
+      </div>
+      <div class="info-block">
+        <div class="info-label">GitHub</div>
+        <div class="info-value">
+          <a href="https://github.com/leelaprasanthi52-kolli" style="color: var(--accent); text-decoration: none; font-size: 0.9rem;">leelaprasanthi52-kolli →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills" id="skills">
+  <p class="section-eyebrow">What I work with</p>
+  <h2 class="section-title">Skills & Technologies</h2>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <div class="skill-cat-icon">💻</div>
+      <div class="skill-cat-name">Languages</div>
+      <div class="skill-tags">
+        <span class="skill-chip lang">Python</span>
+        <span class="skill-chip lang">Java</span>
+        <span class="skill-chip lang">JavaScript</span>
+        <span class="skill-chip lang">TypeScript</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-icon">🌐</div>
+      <div class="skill-cat-name">Frontend</div>
+      <div class="skill-tags">
+        <span class="skill-chip web">HTML5</span>
+        <span class="skill-chip web">CSS3</span>
+        <span class="skill-chip web">Responsive Design</span>
+        <span class="skill-chip web">Git & GitHub</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-icon">📊</div>
+      <div class="skill-cat-name">Data & Tools</div>
+      <div class="skill-tags">
+        <span class="skill-chip lang">Jupyter Notebook</span>
+        <span class="skill-chip lang">Data Analysis</span>
+        <span class="skill-chip web">VS Code</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-icon">🤝</div>
+      <div class="skill-cat-name">Soft Skills</div>
+      <div class="skill-tags">
+        <span class="skill-chip soft">Communication</span>
+        <span class="skill-chip soft">Problem Solving</span>
+        <span class="skill-chip soft">Team Work</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects" id="projects">
+  <p class="section-eyebrow">My Work</p>
+  <h2 class="section-title">Featured Projects</h2>
+  <div class="projects-grid">
+
+    <!-- Snake Game -->
+    <a class="project-card" href="https://github.com/leelaprasanthi52-kolli/vibe-code" target="_blank">
+      <div class="project-card-top">
+        <div class="project-icon-wrap" style="background: rgba(0,212,170,0.12);">🐍</div>
+        <span class="project-link-icon">↗</span>
+      </div>
+      <h3>Snake Game (Vibe Code)</h3>
+      <p>A classic Snake game built using TypeScript and AI Studio. Features smooth gameplay, score tracking, and a clean game interface — built with Gemini AI integration.</p>
+      <div class="project-footer">
+        <span class="lang-badge">TypeScript</span>
+        <a class="gh-link" href="https://github.com/leelaprasanthi52-kolli/vibe-code" target="_blank">View on GitHub →</a>
+      </div>
+    </a>
+
+    <!-- Data Analysis Task 1 -->
+    <a class="project-card" href="https://github.com/leelaprasanthi52-kolli/data-analysis-python-task1" target="_blank">
+      <div class="project-card-top">
+        <div class="project-icon-wrap" style="background: rgba(124,111,255,0.12);">📊</div>
+        <span class="project-link-icon">↗</span>
+      </div>
+      <h3>Data Analysis — Task 1</h3>
+      <p>Python-based data analysis project using Jupyter Notebook. Explores real datasets, performs statistical analysis, and generates visual insights using pandas and matplotlib.</p>
+      <div class="project-footer">
+        <span class="lang-badge">Python · Jupyter</span>
+        <a class="gh-link" href="https://github.com/leelaprasanthi52-kolli/data-analysis-python-task1" target="_blank">View on GitHub →</a>
+      </div>
+    </a>
+
+    <!-- Data Analysis Task 2 -->
+    <a class="project-card" href="https://github.com/leelaprasanthi52-kolli/data-analysis-python-task2" target="_blank">
+      <div class="project-card-top">
+        <div class="project-icon-wrap" style="background: rgba(255,107,157,0.12);">📈</div>
+        <span class="project-link-icon">↗</span>
+      </div>
+      <h3>Data Analysis — Task 2</h3>
+      <p>An advanced data analysis task extending the first project. Includes deeper exploratory data analysis, data cleaning techniques, and more complex visualizations.</p>
+      <div class="project-footer">
+        <span class="lang-badge">Python · Jupyter</span>
+        <a class="gh-link" href="https://github.com/leelaprasanthi52-kolli/data-analysis-python-task2" target="_blank">View on GitHub →</a>
+      </div>
+    </a>
+
+    <!-- Calculator -->
+    <a class="project-card" href="https://github.com/leelaprasanthi52-kolli/codealpha-calculator" target="_blank">
+      <div class="project-card-top">
+        <div class="project-icon-wrap" style="background: rgba(0,212,170,0.12);">🧮</div>
+        <span class="project-link-icon">↗</span>
+      </div>
+      <h3>Calculator</h3>
+      <p>A clean, functional calculator built with HTML, CSS, and JavaScript. Supports arithmetic operations with a polished, responsive UI and keyboard-friendly interactions.</p>
+      <div class="project-footer">
+        <span class="lang-badge">HTML · CSS · JS</span>
+        <a class="gh-link" href="https://github.com/leelaprasanthi52-kolli/codealpha-calculator" target="_blank">View on GitHub →</a>
+      </div>
+    </a>
+
+    <!-- Portfolio -->
+    <a class="project-card" href="https://github.com/leelaprasanthi52-kolli/codealpha-portfolio" target="_blank">
+      <div class="project-card-top">
+        <div class="project-icon-wrap" style="background: rgba(124,111,255,0.12);">🌐</div>
+        <span class="project-link-icon">↗</span>
+      </div>
+      <h3>Personal Portfolio</h3>
+      <p>This portfolio website itself! Built with HTML and CSS, showcasing my projects, skills, and journey as a developer and data analyst.</p>
+      <div class="project-footer">
+        <span class="lang-badge">HTML · CSS</span>
+        <a class="gh-link" href="https://github.com/leelaprasanthi52-kolli/codealpha-portfolio" target="_blank">View on GitHub →</a>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-eyebrow">Let's connect</p>
+  <h2 class="section-title">Have an opportunity or idea? Let's talk.</h2>
+  <div class="contact-card">
+    <a href="mailto:leelaprasanthi52@gmail.com" class="contact-email">
+      ✉️ leelaprasanthi52@gmail.com
+    </a>
+    <div class="contact-divider"></div>
+    <div class="social-row">
+      <a href="https://github.com/leelaprasanthi52-kolli" class="social-btn" target="_blank">
+        GitHub
+      </a>
+      <a href="#" class="social-btn">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & developed by K. Leela Prasanthi &nbsp;·&nbsp; 2025 &nbsp;·&nbsp; Kallam Harnadhreddy Institute of Technology</p>
+</footer>
+
+</body>
+</html>
